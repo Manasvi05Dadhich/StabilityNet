@@ -1,0 +1,12 @@
+# deps
+node_modules/
+
+# build output
+**/dist/
+
+# local configs (may contain RPC keys)
+detection/config/config.json
+
+# misc
+.DS_Store
+Thumbs.db
