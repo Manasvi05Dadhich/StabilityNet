@@ -1,0 +1,47 @@
+{
+  "factory": "0xf62c03e08ada871a0beb309762e260a7a6a880e6",
+  "allPairsLength": "12648",
+  "sampledFrom": "12598",
+  "found": [
+    {
+      "index": "12598",
+      "pair": "0x2dD2F69B8c912A6A1b53A20ad64BB1e0cfb03B69",
+      "token0": "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9",
+      "token1": "0xA5D1017f8Ce93E0Ca237DB264133456E526A3F18",
+      "reserve0": "501000000000000000",
+      "reserve1": "29940299044"
+    },
+    {
+      "index": "12607",
+      "pair": "0x9290cf72645ba8AEdCa0F317057BCB0048912C10",
+      "token0": "0x6b38553100f6b2071Edd2A2Db247E901669Ae2Ee",
+      "token1": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+      "reserve0": "994626000000000000000000",
+      "reserve1": "19799498062000000"
+    },
+    {
+      "index": "12609",
+      "pair": "0x7e778e643f33b5104C4Afd3a681119239F7a59C2",
+      "token0": "0x35B8AdE1910854583D676473820eB530C283CC1b",
+      "token1": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+      "reserve0": "32500000000",
+      "reserve1": "10000000000000000"
+    },
+    {
+      "index": "12610",
+      "pair": "0x70d01A6F5d66E270D191Caf2b53C6E293bE07BBf",
+      "token0": "0x6404650817372A91964389569B979f9325b6d4B9",
+      "token1": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+      "reserve0": "17404",
+      "reserve1": "58"
+    },
+    {
+      "index": "12612",
+      "pair": "0xB59870E57c11fb6e0e2B13bf4f66B87e0d449774",
+      "token0": "0x82383503cb9C62F0CADe79DEFDFF3d48E2147239",
+      "token1": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+      "reserve0": "24613",
+      "reserve1": "41"
+    }
+  ]
+}

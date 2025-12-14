@@ -15,6 +15,7 @@ export const governorAbi = parseAbi([
 
 export const stabilityOracleAbi = parseAbi([
   'function publishScore(uint256 score) external',
+  'function setAllowedSource(address _newSource) external',
   'function getGlobalIndex() view returns (uint256)',
   'function isCooldownActive() view returns (bool)',
   'function isGuardrailActive() view returns (bool)',

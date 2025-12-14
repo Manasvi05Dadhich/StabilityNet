@@ -5,7 +5,19 @@ import { createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { sepolia } from 'viem/chains';
 
-import { analyze, publishScore, resolveBlockRange } from '../dist/index.js';
+import { analyze, ensureDeployed, publishScore, resolveBlockRange } from '../dist/index.js';
+
+function privateKeyEnvToBytes(name) {
+  const raw = process.env[name];
+  if (!raw) throw new Error(`Set env var ${name} (do not commit it).`);
+
+  const hex = raw.trim().replace(/^0x/i, '');
+  if (!/^[0-9a-fA-F]{64}$/.test(hex)) {
+    throw new Error(`${name} must be a 32-byte hex string (64 hex chars), with optional 0x prefix.`);
+  }
+
+  return Uint8Array.from(Buffer.from(hex, 'hex'));
+}
 
 function firstPositional() {
   return process.argv.slice(2).find((a) => !a.startsWith('-')) ?? null;
@@ -26,17 +38,24 @@ if (!oracleAddress) {
   throw new Error('config.oracle.address is required (will be provided after Person 1 deploys)');
 }
 
-const pk = process.env.PUBLISHER_PRIVATE_KEY;
-if (!pk) {
-  throw new Error('Set env var PUBLISHER_PRIVATE_KEY to publish (do not commit it).');
-}
+const pkBytes = privateKeyEnvToBytes('PUBLISHER_PRIVATE_KEY');
+const account = privateKeyToAccount(pkBytes);
 
-const account = privateKeyToAccount(pk);
+function normalizeLiquiditySnapshot(x) {
+  if (!x) return undefined;
+  return {
+    reserve0: typeof x.reserve0 === 'bigint' ? x.reserve0 : BigInt(x.reserve0),
+    reserve1: typeof x.reserve1 === 'bigint' ? x.reserve1 : BigInt(x.reserve1),
+    blockTimestampLast: Number(x.blockTimestampLast)
+  };
+}
 
 const publicClient = createPublicClient({
   chain: sepolia,
   transport: http(cfg.rpcUrl)
 });
+
+await ensureDeployed({ client: publicClient, address: oracleAddress, label: 'StabilityOracle' });
 
 const walletClient = createWalletClient({
   chain: sepolia,
@@ -53,7 +72,7 @@ const { fromBlock, toBlock } = await resolveBlockRange(publicClient, {
 const report = await analyze({
   client: publicClient,
   uniswapV2Pair: cfg.uniswapV2?.pair ?? undefined,
-  previousReserves: cfg.uniswapV2?.previousReserves ?? undefined,
+  previousReserves: normalizeLiquiditySnapshot(cfg.uniswapV2?.previousReserves),
   whaleTransferQuery: cfg.whales?.token && cfg.whales?.minTransferAmount
     ? {
         token: cfg.whales.token,

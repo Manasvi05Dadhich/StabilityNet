@@ -44,6 +44,24 @@ function pow10(decimals) {
   return x;
 }
 
+function normalizeLiquiditySnapshot(x) {
+  if (!x) return undefined;
+  return {
+    reserve0: typeof x.reserve0 === 'bigint' ? x.reserve0 : BigInt(x.reserve0),
+    reserve1: typeof x.reserve1 === 'bigint' ? x.reserve1 : BigInt(x.reserve1),
+    blockTimestampLast: Number(x.blockTimestampLast)
+  };
+}
+
+function serializeLiquiditySnapshot(x) {
+  if (!x) return null;
+  return {
+    reserve0: x.reserve0.toString(),
+    reserve1: x.reserve1.toString(),
+    blockTimestampLast: Number(x.blockTimestampLast)
+  };
+}
+
 async function ensureWhaleMinTransferAmount(client, cfg) {
   const token = cfg.whales?.token;
   const minTransferAmount = cfg.whales?.minTransferAmount;
@@ -187,7 +205,7 @@ const report = await analyze({
   client,
 
   uniswapV2Pair: uniswapPair,
-  previousReserves: cfg.uniswapV2?.previousReserves ?? undefined,
+  previousReserves: normalizeLiquiditySnapshot(cfg.uniswapV2?.previousReserves),
 
   whaleTransferQuery: whaleToken && isNonEmptyString(cfg.whales?.minTransferAmount)
     ? {
@@ -229,7 +247,7 @@ if (uniswapPair && !cfg.uniswapV2?.previousReserves) {
   try {
     const baseline = await fetchUniswapV2Reserves({ client, pair: uniswapPair });
     cfg.uniswapV2 = cfg.uniswapV2 ?? {};
-    cfg.uniswapV2.previousReserves = baseline;
+    cfg.uniswapV2.previousReserves = serializeLiquiditySnapshot(baseline);
     fs.writeFileSync(configPath, JSON.stringify(cfg, null, 2) + '\n', 'utf8');
   } catch {
     // ignore baseline persistence failures

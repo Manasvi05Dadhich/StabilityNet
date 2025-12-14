@@ -46,7 +46,13 @@ while (true) {
   const report = await analyze({
     client,
     uniswapV2Pair: cfg.uniswapV2?.pair ?? undefined,
-    previousReserves: cfg.uniswapV2?.previousReserves ?? undefined,
+    previousReserves: cfg.uniswapV2?.previousReserves
+      ? {
+          reserve0: BigInt(cfg.uniswapV2.previousReserves.reserve0),
+          reserve1: BigInt(cfg.uniswapV2.previousReserves.reserve1),
+          blockTimestampLast: Number(cfg.uniswapV2.previousReserves.blockTimestampLast)
+        }
+      : undefined,
     whaleTransferQuery: cfg.whales?.token && cfg.whales?.minTransferAmount
       ? {
           token: cfg.whales.token,

@@ -18,7 +18,14 @@
   },
   {
     "type": "function",
-    "name": "getGlobalIndex",
+    "name": "lastScore",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  },
+  {
+    "type": "function",
+    "name": "lastUpdated",
     "stateMutability": "view",
     "inputs": [],
     "outputs": [{ "name": "", "type": "uint256" }]
