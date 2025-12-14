@@ -1,0 +1,26 @@
+[
+  {
+    "type": "event",
+    "name": "StabilityAlert",
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "score", "type": "uint256" },
+      { "indexed": false, "name": "timestamp", "type": "uint256" },
+      { "indexed": true, "name": "sender", "type": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "publishScore",
+    "stateMutability": "nonpayable",
+    "inputs": [{ "name": "score", "type": "uint256" }],
+    "outputs": []
+  },
+  {
+    "type": "function",
+    "name": "getGlobalIndex",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256" }]
+  }
+]

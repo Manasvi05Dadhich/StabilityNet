@@ -1,0 +1,16 @@
+[
+  {
+    "type": "function",
+    "name": "isCooldownActive",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bool" }]
+  },
+  {
+    "type": "function",
+    "name": "isGuardrailActive",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bool" }]
+  }
+]
