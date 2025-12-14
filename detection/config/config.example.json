@@ -1,0 +1,39 @@
+{
+  "rpcUrl": "https://eth-sepolia.g.alchemy.com/v2/YOUR_KEY",
+
+  "blocks": {
+    "toBlock": null,
+    "blocksBack": 200
+  },
+
+  "uniswapV2": {
+    "pair": null,
+    "previousReserves": null
+  },
+
+  "whales": {
+    "token": null,
+    "minTransferAmount": null,
+    "decimals": 18,
+    "minTokens": "100000"
+  },
+
+  "flashLoans": {
+    "enabled": false,
+    "address": "0x0000000000000000000000000000000000000000",
+    "eventAbiItem": "event FlashLoan(address indexed target,address indexed initiator,address indexed asset,uint256 amount,uint256 premium,uint16 referralCode)"
+  },
+
+  "governance": {
+    "enabled": false,
+    "governor": null,
+    "proposalId": "0",
+    "estimateNewWalletVoters": false
+  },
+
+  "oracle": {
+    "address": null
+  },
+
+  "previousParticipationVotes": null
+}
