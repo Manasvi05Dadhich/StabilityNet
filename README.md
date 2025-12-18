@@ -23,7 +23,7 @@ Repo layout:
    - Oracle stores latest values + emits `StabilityAlert`
    - If score >= 75 and immune system is configured, Oracle can trigger ImmuneSystem defenses
 
-## Contracts (Person 1)
+## Contracts 
 Located in `stabilitynet-contracts/contracts/`.
 
 ### StabilityOracle.sol
@@ -44,7 +44,7 @@ Provides defensive "immune" states exposed to the UI:
 - `isCooldownActive() -> bool`
 - `isGuardrailActive() -> bool`
 
-## Detection package (Person 2) — `detection/`
+## Detection package  — `detection/`
 ### What it provides
 - CLI analysis (`npm run analyze`): fetch signals + compute risk breakdown + final index
 - CLI publish (`npm run publish`): analyze + `publishScore(index)` on the Oracle
