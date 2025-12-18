@@ -145,4 +145,6 @@ Update these if you redeploy.
 - Never commit private keys (`PUBLISHER_PRIVATE_KEY`, `ORACLE_OWNER_PRIVATE_KEY`).
 - Use test wallets on Sepolia only.
 
+thanks
+
 
