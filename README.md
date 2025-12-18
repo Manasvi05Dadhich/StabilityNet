@@ -85,7 +85,7 @@ If Oracle restricts publishing, the Oracle owner must set the allowed publisher:
 npm --prefix ./detection run authorize
 ```
 
-## Frontend (Person 3) — `frontend/`
+## Frontend — `frontend/`
 ### What it provides
 - Dashboard (global index + alerts)
 - Signals page (shows outputs from Person 2 analysis)
