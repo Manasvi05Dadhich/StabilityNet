@@ -38,11 +38,8 @@ if (!cfg.rpcUrl) throw new Error('config.rpcUrl is required');
 const oracleAddress = cfg.oracle?.address;
 if (!oracleAddress) throw new Error('config.oracle.address is required');
 
-// Must be the OWNER/deployer key (or whoever has permission to call setAllowedSource).
 const ownerPkBytes = privateKeyEnvToBytes('ORACLE_OWNER_PRIVATE_KEY');
 
-// Address to authorize.
-// Prefer explicit env var; otherwise derive from PUBLISHER_PRIVATE_KEY if provided.
 let publisherAddress = process.env.PUBLISHER_ADDRESS ?? null;
 if (!publisherAddress) {
   const publisherPkBytes = privateKeyEnvToBytes('PUBLISHER_PRIVATE_KEY');
