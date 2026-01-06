@@ -1,5 +1,4 @@
 
-=======
 StabilityNet is prototype that monitors **real on-chain signals** and publishes a single **Instability Index (0–100)** on-chain. When the index crosses a danger threshold (>= 75), an **Immune System** contract can activate defensive controls.
 
 Repo layout:
